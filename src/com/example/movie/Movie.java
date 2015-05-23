@@ -5,12 +5,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Movie {
-
 	// private Map<String, String > _dico = new HashMap<String, String>();
 	private String _request;
 	private JSONObject _parser;
 	private String _name;
 
+	public Movie(){ }
+	
 	public Movie(String request) {
 		_request = request;
 		try {
@@ -48,9 +49,7 @@ public class Movie {
 		try {
 			result = _parser.getString("Poster");
 			if (result.equals("")) {
-				result = ObjectRequest
-						.sendRequest("http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="
-								+ _name + "poster");
+				result = ObjectRequest.sendRequest("http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + _name.replace(" ", "+") + "poster");
 				JSONArray jArray = _parser.getJSONArray("results");
 				JSONObject oneObject = jArray.getJSONObject(0);
 				result = oneObject.getString("url");
