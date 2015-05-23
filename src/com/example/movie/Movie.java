@@ -48,9 +48,15 @@ public class Movie {
 		String result = "";
 		try {
 			result = _parser.getString("Poster");
-			if (result.equals("")) {
-				result = ObjectRequest.sendRequest("http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + _name.replace(" ", "+") + "poster");
-				JSONArray jArray = _parser.getJSONArray("results");
+			System.out.println("result " + result + " " + result.length());
+			if (result.equals("N/A")) {
+				String request = "http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" +
+								_name.replace(" ", "+").replace("\n", "") + "+poster";
+				System.out.println(request);
+				result = ObjectRequest.sendRequest(request);
+				JSONObject jobjectResponse = new JSONObject(result);
+				JSONObject jobject = jobjectResponse.getJSONObject("responseData");
+				JSONArray jArray = jobject.getJSONArray("results");
 				JSONObject oneObject = jArray.getJSONObject(0);
 				result = oneObject.getString("url");
 			}
