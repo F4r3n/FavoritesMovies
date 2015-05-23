@@ -39,16 +39,18 @@ public class MainActivity extends Activity {
 	}
 
 	View.OnClickListener handler = new View.OnClickListener() {
-
 		@Override
 		public void onClick(View v) {
 			prepareRequest();
-			if(movieName.equals("")) return;
-			sendRequest();
+			if(movieName.equals("")) {
+				return;	
+			}
 			Intent myIntent = new Intent(MainActivity.this, ResultActivity.class);
-			myIntent.putExtra("key", sendRequest()); //Optional parameters
+			
+			String url = "http://www.omdbapi.com/?t="+movieName+"&y=&plot=short&r=json";
+			myIntent.putExtra("postSearch", ObjectRequest.sendRequest(url)); 
+			
 			MainActivity.this.startActivity(myIntent);
-
 		}
 	};
 	
@@ -56,34 +58,5 @@ public class MainActivity extends Activity {
 		movieName = text.getText().toString().replace(" ", "+").replace("\n", "").replace("\r", "");
 		
 	}	
-
-	private String sendRequest() {
-		StringBuilder builder = new StringBuilder();
-		HttpClient client = new DefaultHttpClient();
-		HttpGet httpGet = new HttpGet(
-				"http://www.omdbapi.com/?t="+movieName+"&y=&plot=short&r=json");
-		try {
-			HttpResponse response = client.execute(httpGet);
-			StatusLine statusLine = response.getStatusLine();
-			int statusCode = statusLine.getStatusCode();
-			if (statusCode == 200) {
-				HttpEntity entity = response.getEntity();
-				InputStream content = entity.getContent();
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(content));
-				String line;
-				while ((line = reader.readLine()) != null) {
-					builder.append(line);
-				}
-			} else {
-				System.err.println("Fail");
-			}
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return builder.toString();
-	}
 	
 }

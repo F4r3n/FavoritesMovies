@@ -1,7 +1,6 @@
 package com.example.movie;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 import android.app.Activity;
@@ -12,18 +11,21 @@ import android.widget.ListView;
 
 public class ResultActivity extends Activity {
 	private ListView _listMovie;
+	private String _searchResult;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_result);
-
-		final ListView listview = (ListView) findViewById(R.id.listMovie);
-
 		
-	    final LinkedList<Movie> list = new LinkedList<Movie>();
-	    final StableArrayAdapter adapter = new StableArrayAdapter(this, android.R.layout.activity_list_item, list);
-	    listview.setAdapter(adapter);
+		final ListView listview = (ListView) findViewById(R.id.listMovie);
+		_searchResult = getIntent().getStringExtra("postSearch");
+		System.out.println(_searchResult);
+		
+	    // final LinkedList<Movie> list = new LinkedList<Movie>();
+	    // final StableArrayAdapter adapter = new StableArrayAdapter(this, android.R.layout.activity_list_item, list);
+	    
+	    // listview.setAdapter(adapter);
 	}
 }
 
