@@ -1,24 +1,45 @@
 package com.example.movie;
 
-import java.util.HashMap;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Movie {
 	
-	private HashMap<String, String > _dico = new HashMap<String, String>();
+	//private Map<String, String > _dico = new HashMap<String, String>();
 	private String _request;
-	private JSONObject parser;
+	private JSONObject _parser;
 	
 	public Movie(String request) {
 		_request = request;
 		try {
-			parser = new JSONObject(request);
+			_parser = new JSONObject(_request);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	public String getTitle() {
+		String result ="";
+		try {
+			result = _parser.getString("Title");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public String getPlot() {
+		String result ="";
+		try {
+			result = _parser.getString("Plot");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	
 	
 
