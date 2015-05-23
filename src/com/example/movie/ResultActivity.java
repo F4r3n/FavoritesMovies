@@ -20,7 +20,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class ResultActivity extends Activity {
-	private ListView _listMovie;
 	private Movie _movie;
 
 	@Override
