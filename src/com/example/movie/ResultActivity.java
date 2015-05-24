@@ -1,7 +1,6 @@
 package com.example.movie;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.LinkedList;
@@ -64,7 +63,10 @@ class MovieAdapter extends ArrayAdapter<Movie> {
 		viewContent.setText(_movies.get(position).getPlot());
 		
 		try {
-		  Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(_movies.get(position).getPoster()).getContent());
+			String url = _movies.get(position).getPoster();
+			System.out.println(url);
+		  Bitmap bitmap = BitmapFactory.decodeStream(new URL(url).openStream());
+		  
 		  imageView.setImageBitmap(bitmap); 
 		} catch (MalformedURLException e) {
 		  e.printStackTrace();

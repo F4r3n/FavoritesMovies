@@ -17,8 +17,9 @@ public class Movie {
 	public Movie() {
 	}
 
-	public Movie(String id) {
+	public Movie(String id, String movieName) {
 		_id = id;
+		_name = movieName;
 		search();
 	}
 	
@@ -38,7 +39,6 @@ public class Movie {
 		String resultQuery = ObjectRequest.sendRequest(search);
 		try {
 			_parser = new JSONObject(resultQuery);
-			_name = _parser.getString("Title");
 			_plot = _parser.getString("Plot");
 			_year = _parser.getString("Year");
 			_imdbRating = _parser.getString("imdbRating");

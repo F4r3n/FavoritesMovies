@@ -25,15 +25,25 @@ public class MovieResearch {
 		JSONArray popularTitles = null;
 		try {
 			JSONObject o = new JSONObject(resultQuery);
-			popularTitles = o.getJSONArray("title_popular");
+			
+			popularTitles = o.getJSONArray("title_exact");
+		
+			
 		} catch (JSONException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+		}
+		
+
+		if(popularTitles == null) {
+			return;
 		}
 		for(int i=0; i< popularTitles.length();i++) {
 			try {
 				JSONObject jobject = popularTitles.getJSONObject(i);
 				String id = jobject.getString("id");
-				movies.add(new Movie(id));
+				String title = jobject.getString("title");
+
+				movies.add(new Movie(id,title));
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
