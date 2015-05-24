@@ -34,8 +34,8 @@ public class MainActivity extends Activity {
 			}
 			Intent myIntent = new Intent(MainActivity.this, ResultActivity.class);
 			
-			String url = "http://www.omdbapi.com/?t="+movieName+"&y=&plot=short&r=json";
-			myIntent.putExtra("postSearch", ObjectRequest.sendRequest(url)); 
+		//	String url = "http://www.omdbapi.com/?t="+movieName+"&y=&plot=short&r=json";
+			myIntent.putExtra("postSearch", movieName); 
 			
 			MainActivity.this.startActivity(myIntent);
 		}

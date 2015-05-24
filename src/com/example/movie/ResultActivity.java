@@ -20,7 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class ResultActivity extends Activity {
-	private Movie _movie;
+	private MovieResearch _movies;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +29,11 @@ public class ResultActivity extends Activity {
 
 		final ListView listview = (ListView) findViewById(R.id.listMovie);
 		String searchResult = getIntent().getStringExtra("postSearch");
-		_movie = new Movie(searchResult);
-		System.out.println("Movie : "+ _movie.getPlot()+" - "+_movie.getPoster()+ " - "+_movie.getTitle());
+		_movies = new MovieResearch(searchResult);
 		
-		final LinkedList<Movie> list = new LinkedList<Movie>();
-		list.add(_movie);
+		LinkedList<Movie> list = new LinkedList<Movie>();
+		list = _movies.getArray();
+		
 
 		final MovieAdapter adapter = new MovieAdapter(this, R.layout.activity_result, list);
 		listview.setAdapter(adapter);
