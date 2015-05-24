@@ -29,6 +29,7 @@ public class MovieResearch {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		
 		for(int i=0; i< popularTitles.length();i++) {
 			try {
 				JSONObject jobject = popularTitles.getJSONObject(i);
