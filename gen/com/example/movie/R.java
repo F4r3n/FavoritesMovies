@@ -26,11 +26,13 @@ public final class R {
     }
     public static final class id {
         public static final int Search=0x7f080001;
-        public static final int action_settings=0x7f080006;
+        public static final int action_settings=0x7f080008;
         public static final int listMovie=0x7f080002;
         public static final int movieName=0x7f080000;
         public static final int poster=0x7f080003;
-        public static final int synopsis=0x7f080005;
+        public static final int rating=0x7f080005;
+        public static final int streaming=0x7f080007;
+        public static final int synopsis=0x7f080006;
         public static final int title=0x7f080004;
     }
     public static final class layout {

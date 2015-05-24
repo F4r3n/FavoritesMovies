@@ -1,3 +1,4 @@
+
 package com.example.movie;
 
 import java.io.IOException;
@@ -12,8 +13,10 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -57,17 +60,21 @@ class MovieAdapter extends ArrayAdapter<Movie> {
 
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.poster);
 		TextView viewTitle = (TextView) rowView.findViewById(R.id.title);
+		TextView viewRating = (TextView) rowView.findViewById(R.id.rating);
 		TextView viewContent = (TextView) rowView.findViewById(R.id.synopsis);
+		Button streaming = (Button) rowView.findViewById(R.id.streaming);
+		streaming.setOnClickListener(streamingListener);
 		
-		viewTitle.setText(_movies.get(position).getTitle());
+		
+		viewTitle.setText(_movies.get(position).getTitle()+" ("+_movies.get(position).getYear()+") ");
+		viewRating.setText(_movies.get(position).getRating());
 		viewContent.setText(_movies.get(position).getPlot());
 		
 		try {
 			String url = _movies.get(position).getPoster();
 			System.out.println(url);
 		  Bitmap bitmap = BitmapFactory.decodeStream(new URL(url).openStream());
-		  
-		  imageView.setImageBitmap(bitmap); 
+		  		  imageView.setImageBitmap(bitmap); 
 		} catch (MalformedURLException e) {
 		  e.printStackTrace();
 		} catch (IOException e) {
@@ -76,4 +83,12 @@ class MovieAdapter extends ArrayAdapter<Movie> {
 
 		return rowView;
 	}
+	
+	OnClickListener streamingListener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			System.out.println("Streaming ready to use.");
+		}
+	};
 }
