@@ -17,12 +17,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="6dip"
+            android:layout_weight="0.35"
             android:contentDescription="poster movie"
             android:src="@drawable/ic_launcher" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="0.65"
             android:orientation="vertical" >
 
             <LinearLayout
@@ -60,10 +62,25 @@
                 android:orientation="horizontal" >
 
                 <Button
+                    android:id="@+id/trailer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.333"
+                    android:text="Trailer" />
+
+                <Button
                     android:id="@+id/streaming"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.333"
                     android:text="Streaming" />
+
+                <Button
+                    android:id="@+id/share"
+                    android:layout_weight="0.333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Share" />
 
             </LinearLayout>
 
